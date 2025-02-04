@@ -3,7 +3,7 @@ library(readr)
 library(ggpattern)
 library(magick)
 
-setwd("/Users/anushasubramanian/Desktop/subway")
+setwd("/Users/anushasubramanian/Desktop/Columbia/Spring 2025/Algorithms/subway_delays/")
 
 subway_data <- data.frame(
   year = c(2020, 2021, 2022, 2023, 2024),
@@ -28,7 +28,7 @@ ggplot(subway_data) +
   theme(text = element_text(size = 13),
         axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(title = "Subway Car Delays Surge 127%",
-       subtitle = "MTA data shows that subway-car related incidents, causing delays of 50 minutes or more, \nhave hit a record high in 2024 ",
+       subtitle = "MTA data shows that unplanned subway-car related incidents, causing delays of \n50 or more trains, have hit a record high in 2024",
        x = "Year",
        y = "Delays",
        caption = "Data source: MTA Open Data") +
