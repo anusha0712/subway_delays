@@ -19,25 +19,34 @@ ggplot(subway_data) +
     pattern_fill = "white",
     fill = 'white',
     pattern_type = 'expand',
-    pattern_aspect_ratio = 1.2
+    pattern_aspect_ratio = 1.18,
   ) +
   scale_pattern_filename_discrete(choices = subway_data$image) +
-  geom_text(aes(label = delays, fontface = ), hjust = -1) +
+  geom_text(aes(label = paste0(delays, " delays")), hjust = -0.2) +
   coord_cartesian(xlim = c(0, 120)) +
   theme_minimal() +
   theme(text = element_text(size = 13),
-        axis.text.x = element_text(angle = 90, hjust = 1)) +
+        axis.text.x = element_text(size = 12, hjust = 1), 
+        axis.text.y = element_text(size = 13, hjust = 1)) +
   labs(title = "Subway Car Delays Surge 127%",
-       subtitle = "MTA data shows that unplanned subway-car related incidents, causing delays of \n50 or more trains, have hit a record high in 2024",
-       x = "Year",
-       y = "Delays",
-       caption = "Data source: MTA Open Data") +
-  theme(legend.position = "none") +
-  annotate("text", x = 88, y = "2024", label = "experienced 17 such\ndelays - largest recorded\nby a single subway line\nin the past 5 years",
-           size = 3, vjust = 2.7, hjust = 0) +
-  annotate("point", x = 85, y = "2023", size = 7, shape = 21, fill = "#FCCC0A", ) +  # Simulating the N train icon
-  annotate("text", x = 85, y = "2023", label = "N", fontface = "bold", size = 4) +
-  geom_curve(aes(x = 110, y = "2024", xend = 110, yend = "2023"), 
+       subtitle = "MTA data shows that unplanned subway car related incidents, causing delays of \n50 or more trains, have hit a record high in 2024",
+       x = NULL,
+       y = NULL,
+       caption = "\nSubway car related incidents are those involving broken doors, seats, windows, lights, brakes and\nother problems caused by defective trains, such as power or air conditioning failures (MTA handbook).            Data source: MTA Open Data") +
+  theme(legend.position = "none",
+        panel.grid.major = element_blank(),
+        plot.caption = element_text(size = 10, hjust = 0, vjust = -1),
+        plot.margin = margin(10, 10, 20, 10)) +
+  geom_text(aes(x = 90.8, y = "2023", 
+                label = "- Train experienced 17 such\n  delays, making it the largest\n   recorded total by a single subway\n line in the past 5 years."), 
+            size = 3, hjust = 0.1, vjust = 0.9) +
+  geom_point(aes(x = 86, y = "2023"), 
+           size = 7, shape = 21, fill = "#FCCC0A") +
+
+  geom_text(aes(x = 86, y = "2023", label = "N"), 
+          fontface = "bold", size = 4, vjust = 0.5) +
+
+  geom_curve(aes(x = 114, y = "2024", xend = 112, yend = "2023"), 
              curvature = -0.7, arrow = arrow(length = unit(0.02, "npc")))
 
 
